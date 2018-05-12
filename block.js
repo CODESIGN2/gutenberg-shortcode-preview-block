@@ -36,7 +36,7 @@ export class Shortcode extends Component {
 			<div className="wp-block-shortcode" key="placeholder">
 				<label htmlFor={ inputId }>
 					<Dashicon icon="editor-code" />
-					{ __( 'Shortcode' ) }
+					{ __( 'CD2 Shortcode' ) }
 				</label>
 				<PlainText
 					id={ inputId }
