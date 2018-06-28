@@ -7,20 +7,24 @@
  * Author: Lewis Cowles
  *
  */
-defined( 'ABSPATH' ) || exit;
+namespace cd2\wordpress\gutenberg\visualshortcode;
+
+if ( version_compare( PHP_VERSION, '5.6.0', '<' ) ) {
+    ?>
+    <div id="error-page">
+        <p>This plugin requires PHP 5.6.0 or higher. Please contact your hosting provider about upgrading your
+            server software. Your PHP version is <b><?php echo PHP_VERSION; ?></b></p>
+    </div>
+    <?php
+    die();
+}
 
 require_once __DIR__ . '/lib/class-wp-rest-shortcodes-controller.php';
-
-
-add_action( 'rest_api_init', 'cd2_register_rest_routes' );
 
 function cd2_register_rest_routes() {
 	$controller = new WP_REST_Shortcodes_Controller();
 	$controller->register_routes();
 }
-
-
-add_action( 'enqueue_block_editor_assets', 'cd2_sc_enqueue_block_editor_assets' );
 
 function cd2_sc_enqueue_block_editor_assets() {
 	wp_enqueue_script(
@@ -36,4 +40,9 @@ function cd2_sc_enqueue_block_editor_assets() {
 		array( 'wp-edit-blocks' ),
 		filemtime( plugin_dir_path( __FILE__ ) . 'editor.css' )
 	);
+}
+
+if (defined('ABSPATH')) {
+	add_action( 'rest_api_init', 'cd2_register_rest_routes' );
+	add_action( 'enqueue_block_editor_assets', 'cd2_sc_enqueue_block_editor_assets' );
 }

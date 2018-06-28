@@ -1,0 +1,23 @@
+<phpunit
+        bootstrap="tests/bootstrap.php"
+        backupGlobals="false"
+        colors="true"
+        convertErrorsToExceptions="true"
+        convertNoticesToExceptions="true"
+        convertWarningsToExceptions="true"
+        >
+    <testsuites>
+        <testsuite name="unittests">
+            <directory suffix="-test.php">./tests/</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory>./src/</directory>
+        </whitelist>
+    </filter>
+    <php>
+         <ini name="display_errors" value="true"/>
+         <ini name="display_startup_errors" value="true"/>
+    </php>
+</phpunit>
