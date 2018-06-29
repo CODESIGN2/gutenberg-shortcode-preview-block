@@ -9,7 +9,7 @@
     "require-dev": {
         "ext-xdebug": "*",
         "phpunit/phpunit": "*",
-        "10up/wp_mock": "dev-master",
+        "10up/wp_mock": "0.2.0",
         "antecedent/patchwork": "*",
         "wordpress": "*",
         "php-coveralls/php-coveralls": "*",

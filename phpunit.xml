@@ -6,6 +6,10 @@
         convertNoticesToExceptions="true"
         convertWarningsToExceptions="true"
         >
+    <logging>
+        <log type="coverage-html" target="tests/reports"/>
+        <log type="coverage-clover" target="tests/reports/clover.xml"/>
+    </logging>
     <testsuites>
         <testsuite name="unittests">
             <directory suffix="-test.php">./tests/</directory>
