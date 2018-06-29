@@ -1,4 +1,6 @@
 <?php
+
+namespace cd2\wordpress\gutenberg\visualshortcode\rest;
 /**
  * Shortcode Blocks REST API: WP_REST_Shortcodes_Controller class
  *
@@ -13,7 +15,7 @@
  *
  * @see WP_REST_Controller
  */
-class WP_REST_Shortcodes_Controller extends WP_REST_Controller {
+class WP_REST_Shortcodes_Controller extends \WP_REST_Controller {
 	/**
 	 * Constructs the controller.
 	 *
@@ -36,9 +38,9 @@ class WP_REST_Shortcodes_Controller extends WP_REST_Controller {
 		// @codingStandardsIgnoreLine - PHPCS mistakes $this->namespace for the namespace keyword
 		$namespace = $this->namespace;
 
-		register_rest_route( $namespace, '/' . $this->rest_base, array(
+		\register_rest_route( $namespace, '/' . $this->rest_base, array(
 			array(
-				'methods'             => WP_REST_Server::READABLE,
+				'methods'             => \WP_REST_Server::READABLE,
 				'callback'            => array( $this, 'get_shortcode_output' ),
 				'permission_callback' => array( $this, 'get_shortcode_output_permissions_check' ),
 			),
@@ -52,14 +54,21 @@ class WP_REST_Shortcodes_Controller extends WP_REST_Controller {
 	 * @since 2.0.0
 	 * @access public
 	 *
-	 * @param  WP_REST_Request $request Full details about the request.
-	 * @return true|WP_Error True if the request has read access, WP_Error object otherwise.
+	 * @param  \WP_REST_Request $request Full details about the request.
+	 * @return true|\WP_Error True if the request has read access, WP_Error object otherwise.
 	 */
 	public function get_shortcode_output_permissions_check( $request ) {
-		if ( ! current_user_can( 'edit_posts' ) ) {
-			return new WP_Error( 'gutenberg_shortcode_block_cannot_read', __( 'Sorry, you are not allowed to read shortcode blocks as this user.', 'gutenberg' ), array(
-				'status' => rest_authorization_required_code(),
-			) );
+		if ( ! \current_user_can( 'edit_posts' ) ) {
+			return new \WP_Error(
+				'gutenberg_shortcode_block_cannot_read',
+				__(
+					'Sorry, you are not allowed to read shortcode blocks as this user.',
+					'gutenberg'
+				),
+				[
+					'status' => \rest_authorization_required_code(),
+				]
+			);
 		}
 
 		return true;
@@ -71,8 +80,8 @@ class WP_REST_Shortcodes_Controller extends WP_REST_Controller {
 	 * @since 2.0.0
 	 * @access public
 	 *
-	 * @param WP_REST_Request $request Full details about the request.
-	 * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+	 * @param \WP_REST_Request $request Full details about the request.
+	 * @return \WP_REST_Response|\WP_Error Response object on success, or WP_Error object on failure.
 	 */
 	public function get_shortcode_output( $request ) {
 		global $post;
@@ -83,7 +92,7 @@ class WP_REST_Shortcodes_Controller extends WP_REST_Controller {
 		$type      = 'html';
 		$output    = '';
 		$args      = $request->get_params();
-		$post      = isset( $args['postId'] ) ? get_post( $args['postId'] ) : null;
+		$post      = isset( $args['postId'] ) ? \get_post( $args['postId'] ) : null;
 		$shortcode = isset( $args['shortcode'] ) ? trim( $args['shortcode'] ) : '';
 
 		// Initialize $data.
@@ -96,32 +105,32 @@ class WP_REST_Shortcodes_Controller extends WP_REST_Controller {
 
 		if ( empty( $shortcode ) ) {
 			$data['html'] = __( 'Enter something to preview', 'gutenberg' );
-			return rest_ensure_response( $data );
+			return \rest_ensure_response( $data );
 		}
 
 		if ( ! empty( $post ) ) {
-			setup_postdata( $post );
+			\setup_postdata( $post );
 		}
 
-		if ( has_shortcode( $shortcode, 'embed' ) ) {
+		if ( \has_shortcode( $shortcode, 'embed' ) ) {
 			$output = $wp_embed->run_shortcode( $shortcode );
 		} else {
 			$output = $shortcode;
 		}
 
-		$output = do_shortcode( $output );
+		$output = \do_shortcode( $output );
 
 		if ( empty( $output ) || ( $output === $shortcode ) ) {
 			$data['html'] = __( 'Sorry, couldn\'t render a preview', 'gutenberg' );
-			return rest_ensure_response( $data );
+			return \rest_ensure_response( $data );
 		}
 
 		ob_start();
-		wp_head();
+		\wp_head();
 		$style = ob_get_clean();
 
 		ob_start();
-		wp_footer();
+		\wp_footer();
 		$js = ob_get_clean();
 
 		$data = array(
@@ -131,7 +140,7 @@ class WP_REST_Shortcodes_Controller extends WP_REST_Controller {
 			'js'    => $js,
 		);
 
-		return rest_ensure_response( $data );
+		return \rest_ensure_response( $data );
 	}
 
 	/**
@@ -139,6 +148,7 @@ class WP_REST_Shortcodes_Controller extends WP_REST_Controller {
 	 *
 	 * @since 0.10.0
 	 * @access public
+	 * @codeCoverageIgnore
 	 *
 	 * @return array Item schema data.
 	 */
@@ -149,22 +159,34 @@ class WP_REST_Shortcodes_Controller extends WP_REST_Controller {
 			'type'       => 'object',
 			'properties' => array(
 				'html'  => array(
-					'description' => __( 'The block\'s content with shortcodes filtered through hooks.', 'gutenberg' ),
+					'description' => __(
+						'The block\'s content with shortcodes filtered through hooks.',
+						'gutenberg'
+					),
 					'type'        => 'string',
 					'required'    => true,
 				),
 				'type'  => array(
-					'description' => __( 'The filtered content type - video or otherwise', 'gutenberg' ),
+					'description' => __(
+						'The filtered content type - video or otherwise',
+						'gutenberg'
+					),
 					'type'        => 'string',
 					'required'    => true,
 				),
 				'style' => array(
-					'description' => __( 'Links to external style sheets needed to render the shortcode', 'gutenberg' ),
+					'description' => __(
+						'Links to external style sheets needed to render the shortcode',
+						'gutenberg'
+					),
 					'type'        => 'string',
 					'required'    => true,
 				),
 				'js'    => array(
-					'description' => __( 'Links to external javascript and inline scripts needed to render the shortcode', 'gutenberg' ),
+					'description' => __(
+						'Links to JS and CSS needed to render the shortcode',
+						'gutenberg'
+					),
 					'type'        => 'string',
 					'required'    => true,
 				),
