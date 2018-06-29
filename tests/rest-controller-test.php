@@ -79,7 +79,7 @@ class RestController extends \BaseWPMockTestCase
       }
     );
 
-    $request = \Mockery::Mock( '\WP_REST_Response, \WP_HTTP_Response' );
+    $request = \Mockery::Mock( '\WP_REST_Response' );
 
     \WP_Mock::wpFunction( 'rest_ensure_response' )->andReturnUsing(
       function ($in) { return new \WP_HTTP_Response( json_encode( $in ) ); }
