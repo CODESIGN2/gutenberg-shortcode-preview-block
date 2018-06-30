@@ -23,10 +23,11 @@ class ShortcodePreview extends Component {
 
 	componentDidMount() {
 		const { shortcode } = this.props;
+		const myURL = new URL( window.location.href );
 		const apiURL = addQueryArgs( wpApiSettings.root + 'gutenberg/v1/shortcodes', {
 			shortcode: shortcode,
 			_wpnonce: wpApiSettings.nonce,
-			postId: window._wpGutenbergPost.id,
+			postId: myURL.searchParams.get('post'),
 		} );
 		return window.fetch( apiURL, {
 			credentials: 'include',
