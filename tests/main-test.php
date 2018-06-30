@@ -18,11 +18,11 @@ class Main extends \BaseWPMockTestCase
     public function test_init_hooks_fired() {
         \WP_Mock::expectActionAdded(
           'rest_api_init',
-          'cd2_register_rest_routes'
+          __NAMESPACE__.'\register_rest_routes'
         );
       	\WP_Mock::expectActionAdded(
           'enqueue_block_editor_assets',
-          'cd2_sc_enqueue_block_editor_assets'
+          __NAMESPACE__.'\sc_enqueue_block_editor_assets'
         );
         InitPlugin();
 
@@ -37,7 +37,7 @@ class Main extends \BaseWPMockTestCase
           'return' => __DIR__ . '/../src/',
       ]);
 
-      cd2_sc_enqueue_block_editor_assets();
+      sc_enqueue_block_editor_assets();
 
       $this->enqueue_script->once();
       $this->enqueue_style->once();
@@ -47,7 +47,7 @@ class Main extends \BaseWPMockTestCase
 
     public function test_registering_rest_route_without_wp()
     {
-      cd2_register_rest_routes();
+      register_rest_routes();
     }
 
     public function test_registering_rest_route_with_mock_wp()
@@ -56,6 +56,6 @@ class Main extends \BaseWPMockTestCase
 
       \WP_Mock::wpFunction( 'register_rest_route' )->once();
 
-      cd2_register_rest_routes();
+      register_rest_routes();
     }
 }

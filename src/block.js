@@ -4,7 +4,7 @@
 const { withInstanceId, Dashicon } = wp.components;
 const { Component } = wp.element;
 const { __ } = wp.i18n;
-const { PlainText } = wp.blocks;
+const { PlainText } = wp.editor;
 
 /**
  * Internal dependencies

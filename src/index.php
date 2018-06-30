@@ -3,7 +3,7 @@
  * Plugin Name: CD2 Gutenberg Shortcode Preview Block
  * Plugin URI: https://www.codesign2.co.uk
  * Description: This is a plugin that renders shortcodes in Gutenberg
- * Version: 0.0.1
+ * Version: 1.0.2
  * Author: Lewis Cowles
  *
  */
@@ -21,7 +21,7 @@ if ( version_compare( PHP_VERSION, '5.6.0', '<' ) ) {
 
 define('BLOCK_JS_FILE', defined('ABSPATH') ? 'block.build.js' : 'block.js');
 
-function cd2_register_rest_routes() {
+function register_rest_routes() {
   if( class_exists( '\WP_REST_Controller' ) ) {
     require_once __DIR__ . '/lib/class-wp-rest-shortcodes-controller.php';
     $controller = new rest\WP_REST_Shortcodes_Controller();
@@ -29,11 +29,11 @@ function cd2_register_rest_routes() {
   }
 }
 
-function cd2_sc_enqueue_block_editor_assets() {
+function sc_enqueue_block_editor_assets() {
 	wp_enqueue_script(
 		'cd2-gutenberg-shortcode-block',
 		\plugins_url( 'block.build.js', __FILE__ ),
-		array( 'wp-blocks', 'wp-i18n', 'wp-element' ),
+		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ),
 		filemtime( \plugin_dir_path( __FILE__ ) . BLOCK_JS_FILE )
 	);
 
@@ -48,11 +48,11 @@ function cd2_sc_enqueue_block_editor_assets() {
 function init() {
   add_action(
     'rest_api_init',
-    'cd2_register_rest_routes'
+    __NAMESPACE__.'\register_rest_routes'
   );
 	add_action(
     'enqueue_block_editor_assets',
-    'cd2_sc_enqueue_block_editor_assets'
+    __NAMESPACE__.'\sc_enqueue_block_editor_assets'
   );
 }
 
