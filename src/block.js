@@ -1,7 +1,8 @@
 /**
  * WordPress dependencies
  */
-const { withInstanceId, Dashicon } = wp.components;
+const { withInstanceId } = wp.compose;
+const { Dashicon } = wp.components;
 const { Component } = wp.element;
 const { __ } = wp.i18n;
 const { PlainText } = wp.editor;

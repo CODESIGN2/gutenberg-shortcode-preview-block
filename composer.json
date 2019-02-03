@@ -3,7 +3,7 @@
     "description": "WordPress plugin to enable the visual rendering via REST API of shortcodes when using Gutenberg",
     "license": "GPL-2.0-or-later",
     "require": {
-        "php": ">=5.6.0",
+        "php": ">=7.0.0",
         "wpackagist-plugin/gutenberg":"3.*"
     },
     "require-dev": {

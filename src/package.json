@@ -1,6 +1,6 @@
 {
   "name": "cd2-gutenberg-shortcode",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "license": "GPL-2.0-or-later",
   "main": "index.js",
   "dependencies": {
@@ -11,7 +11,7 @@
     "babel-loader": "^7.1.1",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.6.0",
-    "cross-env": "^5.0.1",
+    "cross-env": "^5.2.0",
     "webpack": "^3.1.0"
   },
   "scripts": {
