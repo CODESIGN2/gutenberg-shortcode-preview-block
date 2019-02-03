@@ -3,16 +3,16 @@
  * Plugin Name: CD2 Gutenberg Shortcode Preview Block
  * Plugin URI: https://www.codesign2.co.uk
  * Description: This is a plugin that renders shortcodes in Gutenberg
- * Version: 1.0.2
+ * Version: 1.0.4
  * Author: Lewis Cowles
  *
  */
 namespace cd2\wordpress\gutenberg\visualshortcode;
 
-if ( version_compare( PHP_VERSION, '5.6.0', '<' ) ) {
+if ( version_compare( PHP_VERSION, '7.0..0', '<' ) ) {
     ?>
     <div id="error-page">
-        <p>This plugin requires PHP 5.6.0 or higher. Please contact your hosting provider about upgrading your
+        <p>This plugin requires PHP 7.0.0 or higher. Please contact your hosting provider about upgrading your
             server software. Your PHP version is <b><?php echo PHP_VERSION; ?></b></p>
     </div>
     <?php

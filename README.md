@@ -26,8 +26,7 @@ cd cd2-gutenberg-shortcode-preview-block
 cd src
 npm install
 npm run build
-cd ..
-./build.sh
+../build.sh
 ```
 
 ## Testing
