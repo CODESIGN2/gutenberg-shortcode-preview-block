@@ -1,6 +1,6 @@
 {
   "name": "cd2-gutenberg-shortcode",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "license": "GPL-2.0-or-later",
   "main": "index.js",
   "dependencies": {
