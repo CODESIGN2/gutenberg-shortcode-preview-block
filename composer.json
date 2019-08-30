@@ -3,44 +3,16 @@
     "description": "WordPress plugin to enable the visual rendering via REST API of shortcodes when using Gutenberg",
     "license": "GPL-2.0-or-later",
     "require": {
-        "php": ">=7.0.0",
-        "wpackagist-plugin/gutenberg":"3.*"
+        "php": ">=7.0.0"
     },
     "require-dev": {
         "ext-xdebug": "*",
-        "phpunit/phpunit": "*",
-        "10up/wp_mock": "0.2.0",
+        "phpunit/phpunit": "6.*",
+        "10up/wp_mock": "0.3.0",
         "antecedent/patchwork": "*",
-        "wordpress": "*",
         "php-coveralls/php-coveralls": "*",
         "squizlabs/php_codesniffer": "2.*"
     },
-    "extra": {
-        "installer-paths": {
-            "vendor/{$name}/": [
-                "wordpress",
-                "wpackagist-plugin/gutenberg"
-            ]
-        }
-    },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://wpackagist.org"
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "wordpress",
-                "version": "4.6",
-                "type": "wordpress-plugin",
-                "dist": {
-                    "url": "https://wordpress.org/wordpress-4.6.zip",
-                    "type": "zip"
-                }
-            }
-        }
-    ],
     "autoload": {
         "psr-4": { "cd2\\wordpress\\gutenberg\\visualshortcode\\": "src" }
     },
