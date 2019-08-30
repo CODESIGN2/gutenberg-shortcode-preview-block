@@ -12,12 +12,11 @@ matrix:
     - php: nightly
 
 before_script:
-  - composer update
   - composer install --dev --optimize-autoloader
   - mkdir -p tests/reports
 
 script:
-  - phpunit --verbose
+  - bin/phpunit --verbose
   - cd src && npm install && npm run build && cd ..
 
 after_script:
