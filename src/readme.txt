@@ -2,9 +2,9 @@
 Contributors: CD2Team, LewisCowles, niranjan-uma-shankar
 Tags: gutenberg,shortcode,preview,block,blocks,gutenberg blocks
 Requires at least: 5.0.3
-Tested up to: 5.2.2
-Requires PHP: 7.0
-Stable tag: 1.0.5
+Tested up to: 5.4.2
+Requires PHP: 7.2
+Stable tag: 1.0.6
 License: GPL-2.0
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,6 +20,14 @@ This plugin only exists because the existing shortcode block doesn't give design
 Due to gutenberg being a little unstable this plugin may break from time to time, let me know via the support tab, and I'll do my best to keep on top of it.
 
 == Changelog ==
+= 1.0.6 =
+
+**Changed**
+
+* Tested with 5.4.2 & 2020 theme
+* uses JS de-structuring with `wp.url`
+* Minimum PHP is now 7.2 (no actual code changes)
+
 = 1.0.5 =
 
 **Changed**
