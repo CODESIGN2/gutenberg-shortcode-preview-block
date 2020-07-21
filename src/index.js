@@ -24,7 +24,7 @@ export const settings = {
 	attributes: {
 		text: {
 			type: 'string',
-			source: 'text',
+			source: 'html',
 		},
 	},
 

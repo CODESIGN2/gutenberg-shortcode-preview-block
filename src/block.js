@@ -25,6 +25,10 @@ export class Shortcode extends Component {
 
 		if ( ! isSelected ) {
 			return [
+				<div>
+					<Dashicon icon="visibility" />
+					{ __( 'CD2 Shortcode (Preview)' ) }
+				</div>,
 				<div className="wp-block" key="preview">
 					<ShortcodePreview
 						shortcode={ shortcodeContent }
@@ -34,14 +38,15 @@ export class Shortcode extends Component {
 		}
 
 		return [
-			<div className="wp-block-shortcode" key="placeholder">
-				<label htmlFor={ inputId }>
+			<div className="wp-block-shortcode components-placeholder" key="placeholder">
+				<label htmlFor={ inputId } className="components-placeholder__label">
 					<Dashicon icon="editor-code" />
-					{ __( 'CD2 Shortcode' ) }
+					{ __( 'CD2 Shortcode (Editing)' ) }
 				</label>
 				<PlainText
 					id={ inputId }
 					value={ attributes.text }
+					className="input-control"
 					placeholder={ __( 'Write shortcode here…' ) }
 					onChange={ ( text ) => setAttributes( { text } ) }
 				/>
