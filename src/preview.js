@@ -58,17 +58,22 @@ class ShortcodePreview extends Component {
 		 * should really be named better
 		 */
 		const html = response.data.style + ' ' + response.data.html + ' ' + response.data.js;
-		return (
-			<figure className="wp-block-embed" key="embed">
-				<div className="wp-block-embed__wrapper">
-					<SandBox
-						html={ html }
-						title="Preview"
-						type={ response.data.type }
-					/>
-				</div>
-			</figure>
-		);
+		let output = [
+				<SandBox
+					html={ html }
+					title="Preview"
+					type={ response.data.type }
+				/>,
+		];
+		if (! this.props.isSelected) {
+			/*	
+				An overlay is added when the block is not selected in order to register click events. 
+				Some browsers do not bubble up the clicks from the sandboxed iframe, which makes it 
+				difficult to reselect the block. 
+			*/
+			output.push(<div className="block-library-html__preview-overlay"></div>);
+		}
+		return output
 	}
 }
 
