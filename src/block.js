@@ -17,7 +17,7 @@ export class Shortcode extends Component {
 	constructor() {
 		super( ...arguments );
 		this.state = {
-			preview: true
+			preview: false
 		};
 	}
 
