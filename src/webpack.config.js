@@ -1,4 +1,4 @@
-module.exports = {
+var config = {
 	entry: './index.js',
 	output: {
 		path: __dirname,
@@ -17,4 +17,12 @@ module.exports = {
 			}
 		],
 	},
+};
+
+module.exports = (env, argv) => {
+	if (argv.mode === 'development') {
+		config.devtool = 'source-map';
+	}
+
+	return config;
 };

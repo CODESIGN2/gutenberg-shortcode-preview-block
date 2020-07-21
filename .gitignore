@@ -8,3 +8,4 @@ tests/reports
 *.vagrant
 *.zip
 Vagrantfile
+*.js.map
