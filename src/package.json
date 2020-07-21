@@ -3,17 +3,15 @@
   "version": "1.0.5",
   "license": "GPL-2.0-or-later",
   "main": "index.js",
-  "dependencies": {
-    "@wordpress/url": "1.0.0"
-  },
   "devDependencies": {
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.6.0",
     "cross-env": "^5.2.0",
-    "webpack": "^3.1.0",
-    "mem": ">=4.0.0"
+    "mem": ">=4.0.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
   },
   "scripts": {
     "build": "cross-env BABEL_ENV=default NODE_ENV=production webpack",

@@ -6,3 +6,5 @@ tests/reports
 *.build.js
 *.log
 *.vagrant
+*.zip
+Vagrantfile

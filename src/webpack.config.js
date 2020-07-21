@@ -5,7 +5,7 @@ module.exports = {
 		filename: 'block.build.js',
 	},
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /.js$/,
 				loader: 'babel-loader',

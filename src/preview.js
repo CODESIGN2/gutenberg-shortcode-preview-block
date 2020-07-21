@@ -4,8 +4,7 @@
 const { Spinner } = wp.components;
 const { __ } = wp.i18n;
 const { Component } = wp.element;
-
-import { addQueryArgs } from '@wordpress/url';
+const { addQueryArgs } = wp.url;
 
 /**
  * Plugin Dependencies
