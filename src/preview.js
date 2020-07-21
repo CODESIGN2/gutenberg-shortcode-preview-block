@@ -1,15 +1,10 @@
 /**
  * WordPress dependencies
  */
-const { Spinner } = wp.components;
+const { Spinner, SandBox } = wp.components;
 const { __ } = wp.i18n;
 const { Component } = wp.element;
 const { addQueryArgs } = wp.url;
-
-/**
- * Plugin Dependencies
- */
-import SandBox from './sandbox-custom';
 
 class ShortcodePreview extends Component {
 	constructor( props ) {
@@ -57,7 +52,7 @@ class ShortcodePreview extends Component {
 		 * order must match rest controller style is wp_head, html is shortcode, js is footer
 		 * should really be named better
 		 */
-		const html = response.data.style + ' ' + response.data.html + ' ' + response.data.js;
+		const html = response.data.style + ' ' + response.data.html + ' ' + response.data.js + '<div>&nbsp;</div>';
 		let output = [
 				<SandBox
 					html={ html }
