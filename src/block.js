@@ -1,11 +1,12 @@
 /**
  * WordPress dependencies
  */
-const { withInstanceId } = wp.compose;
 const { Dashicon } = wp.components;
+const { withInstanceId } = wp.compose;
+const { withSelect } = wp.data;
+const { PlainText, BlockControls } = wp.editor;
 const { Component } = wp.element;
 const { __ } = wp.i18n;
-const { PlainText, BlockControls } = wp.editor;
 
 /**
  * Internal dependencies
@@ -23,7 +24,7 @@ export class Shortcode extends Component {
 	render() {
 		const { preview } = this.state;
 		const { instanceId, setAttributes, attributes, isSelected } = this.props;
-		const inputId = `blocks-shortcode-input-${ instanceId }`;
+		const inputId = `blocks-custom-shortcode-input-${ instanceId }`;
 		const shortcodeContent = ( attributes.text || '' ).trim();
 		const willPreview = shortcodeContent.length && preview;
 
@@ -53,7 +54,7 @@ export class Shortcode extends Component {
 					{ controls }
 					<ShortcodePreview
 						shortcode={ shortcodeContent }
-						isSelected={ this.isSelected }
+						parentSelected={ isSelected }
 					/>
 				</div>,
 			] : [
@@ -76,4 +77,9 @@ export class Shortcode extends Component {
 	}
 }
 
-export default withInstanceId( Shortcode );
+export default withSelect(( select ) => {
+	const { getSettings } = select( 'core/block-editor' );
+	return {
+		styles: getSettings().styles,
+	};
+} )(withInstanceId( Shortcode ));

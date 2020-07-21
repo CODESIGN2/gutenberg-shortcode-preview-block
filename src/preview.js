@@ -38,6 +38,7 @@ class ShortcodePreview extends Component {
 	}
 
 	render() {
+		const {parentSelected} = this.props;
 		const response = this.state.response;
 		if ( response.isLoading || ! response.data ) {
 			return (
@@ -60,13 +61,13 @@ class ShortcodePreview extends Component {
 					type={ response.data.type }
 				/>,
 		];
-		if (! this.props.isSelected) {
+		if ( !parentSelected ) {
 			/*	
 				An overlay is added when the block is not selected in order to register click events. 
 				Some browsers do not bubble up the clicks from the sandboxed iframe, which makes it 
 				difficult to reselect the block. 
 			*/
-			output.push(<div className="block-library-html__preview-overlay"></div>);
+			output.push(<div className="sandbox__preview-overlay"></div>);
 		}
 		return output
 	}
