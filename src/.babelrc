@@ -4,12 +4,12 @@
 			"modules": false,
 			"targets": {
 				"browsers": [
-					"last 2 Chrome versions",
-					"last 2 Firefox versions",
-					"last 2 Safari versions",
-					"last 2 iOS versions",
-					"last 1 Android version",
-					"last 1 ChromeAndroid version",
+					"last 20 Chrome versions",
+					"last 20 Firefox versions",
+					"last 4 Safari versions",
+					"last 5 iOS versions",
+					"last 5 Android version",
+					"last 10 ChromeAndroid version",
 					"ie 11"
 				]
 			}
