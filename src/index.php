@@ -9,7 +9,7 @@
  */
 namespace cd2\wordpress\gutenberg\visualshortcode;
 
-if ( version_compare( PHP_VERSION, '7.0..0', '<' ) ) {
+if ( version_compare( PHP_VERSION, '7.0.0', '<' ) ) {
     ?>
     <div id="error-page">
         <p>This plugin requires PHP 7.0.0 or higher. Please contact your hosting provider about upgrading your
