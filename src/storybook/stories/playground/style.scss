@@ -7,6 +7,7 @@
 
 @import "./reset";
 @import "./editor-styles";
+@import "../../../editor.css";
 
 .playground {
 	@include break-small() {
