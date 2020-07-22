@@ -1,10 +1,10 @@
 /**
  * WordPress dependencies
  */
-const { Spinner, SandBox } = wp.components;
-const { __ } = wp.i18n;
-const { Component } = wp.element;
-const { addQueryArgs } = wp.url;
+import { Spinner, SandBox } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
+import { Component } from '@wordpress/element';
+import { addQueryArgs } from '@wordpress/url';
 
 class ShortcodePreview extends Component {
 	constructor( props ) {

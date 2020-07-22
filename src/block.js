@@ -1,12 +1,12 @@
 /**
  * WordPress dependencies
  */
-const { Dashicon } = wp.components;
-const { withInstanceId } = wp.compose;
-const { withSelect } = wp.data;
-const { PlainText, BlockControls } = wp.editor;
-const { Component } = wp.element;
-const { __ } = wp.i18n;
+import { Dashicon } from '@wordpress/components';
+import { withInstanceId } from '@wordpress/compose';
+import { withSelect } from '@wordpress/data';
+import { PlainText, BlockControls } from '@wordpress/editor';
+import { Component } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
 
 /**
  * Internal dependencies

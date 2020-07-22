@@ -1,9 +1,9 @@
 /**
  * WordPress dependencies
  */
-const { RawHTML } = wp.element;
-const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
+import { RawHTML } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
+import { registerBlockType } from '@wordpress/blocks';
 
 /**
  * Internal dependencies
