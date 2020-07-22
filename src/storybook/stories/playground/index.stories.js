@@ -16,6 +16,8 @@ import {
 	DropZoneProvider,
 } from '@wordpress/components';
 import { registerCoreBlocks } from '@wordpress/block-library';
+import '../../../index';
+import fetchMock from 'fetch-mock';
 
 
 /**
@@ -28,6 +30,8 @@ function App() {
 	const [ blocks, updateBlocks ] = useState( [] );
 
 	useEffect( () => {
+		fetchMock.mock('*', {html:'I\'m only a robot dave', js: '', style: ''});
+		global.wpApiSettings = {nonce: 123456, root: '/wp-api/v1'}
 		registerCoreBlocks();
 	}, [] );
 
