@@ -4,7 +4,7 @@ Tags: gutenberg,shortcode,preview,block,blocks,gutenberg blocks
 Requires at least: 5.0.3
 Tested up to: 5.4.2
 Requires PHP: 7.2
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPL-2.0
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,6 +20,23 @@ This plugin only exists because the existing shortcode block doesn't give design
 Due to gutenberg being a little unstable this plugin may break from time to time, let me know via the support tab, and I'll do my best to keep on top of it.
 
 == Changelog ==
+= 1.1.1 =
+
+**Changed**
+
+* Smaller bundled block output using `@wordpress/dependency-extraction-webpack-plugin`.
+* Storybook preview of block.
+
+= 1.1.0 =
+
+**Changed**
+
+* Code slimmed to use more Gutenberg internals.
+
+**Fixed**
+
+* Selection of blocks containing iframes or interactive elements.
+
 = 1.0.6 =
 
 **Changed**

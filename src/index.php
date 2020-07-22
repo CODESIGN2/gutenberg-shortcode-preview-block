@@ -3,7 +3,7 @@
  * Plugin Name: CD2 Gutenberg Shortcode Preview Block
  * Plugin URI: https://www.codesign2.co.uk
  * Description: This is a plugin that renders shortcodes in Gutenberg
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: Lewis Cowles
  *
  */
