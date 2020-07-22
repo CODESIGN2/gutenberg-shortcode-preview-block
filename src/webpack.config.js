@@ -1,3 +1,4 @@
+
 var config = {
 	entry: './index.js',
 	output: {
