@@ -33,8 +33,11 @@ class ShortcodePreview extends Component {
 				if ( res.status === 200 ) {
 					this.setState( { response: res } );
 				}
-			} );
-		} );
+			} ).catch(() => {
+				const res = {data:{html: "A Server Error Occurred", js: '', style:''}};
+				this.setState( { response: res } );
+			});
+		} )
 	}
 
 	render() {

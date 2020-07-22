@@ -30,6 +30,11 @@ global.wpApiSettings = {
 }
 import '../../../index';
 
+
+const iframeAllow = (
+	'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
+);
+
 function App() {
 	const [ blocks, updateBlocks ] = useState( [] );
 
@@ -55,7 +60,7 @@ function App() {
 							<BlockEditorKeyboardShortcuts />
 							<WritingFlow>
 								<ObserveTyping>
-									<BlockList/>
+									<BlockList />
 								</ObserveTyping>
 							</WritingFlow>
 						</div>
@@ -79,7 +84,18 @@ function OnlyARobotApp() {
 function YoutubeApp() {
 	useEffect( () => {
 		fetchMock.restore();
-		fetchMock.mock('*', {html:'<iframe width="560" height="315" src="https://www.youtube.com/embed/oKsxPW6i3pM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>', js: '', style: ''});
+		fetchMock.mock(
+			'*',
+			{
+				html: `<iframe
+	width="560" height="315"
+	src="https://www.youtube.com/embed/oKsxPW6i3pM"
+	frameborder="0" allow="${iframeAllow}"
+	allowfullscreen></iframe>`,
+				js: '',
+				style: ''
+			}
+		);
 	}, [] );
 
 	
@@ -104,6 +120,16 @@ function SlowApp() {
 	return <App />;
 }
 
+function ErrorApp() {
+	useEffect( () => {
+		fetchMock.restore();
+		fetchMock.mock('*', 500);
+	}, [] );
+
+	
+	return <App />;
+}
+
 export default {
 	title: 'Shortcode Preview Block',
 };
@@ -113,3 +139,5 @@ export const _default = () => <OnlyARobotApp />;
 export const YouTubeVideoEmbed = () => <YoutubeApp />;
 
 export const SlowRenderShortcode = () => <SlowApp />;
+
+export const ServerErrorExample = () => <ErrorApp />;
