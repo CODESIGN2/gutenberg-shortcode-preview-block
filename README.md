@@ -1,7 +1,7 @@
 # Gutenberg Shortcode Preview Block
 
-[![Build Status](https://travis-ci.org/CODESIGN2/gutenberg-shortcode-preview-block.svg?branch=master)](https://travis-ci.org/CODESIGN2/gutenberg-shortcode-preview-block)
-[![Coverage Status](https://coveralls.io/repos/github/CODESIGN2/gutenberg-shortcode-preview-block/badge.svg?branch=master)](https://coveralls.io/github/CODESIGN2/gutenberg-shortcode-preview-block?branch=master)
+[![Build Status](https://travis-ci.org/CODESIGN2/gutenberg-shortcode-preview-block.svg?branch=main)](https://travis-ci.org/CODESIGN2/gutenberg-shortcode-preview-block)
+[![Coverage Status](https://coveralls.io/repos/github/CODESIGN2/gutenberg-shortcode-preview-block/badge.svg?branch=main)](https://coveralls.io/github/CODESIGN2/gutenberg-shortcode-preview-block?branch=main)
 
 
 This is a repository for a Gutenberg preview shortcode block, supporting parity with the frontend experience

@@ -18,6 +18,9 @@
     <filter>
         <whitelist>
             <directory>./src/</directory>
+            <exclude>
+                <directory>.src/node_modules</directory>
+            </exclude>
         </whitelist>
     </filter>
     <php>
