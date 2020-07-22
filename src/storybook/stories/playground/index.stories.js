@@ -86,14 +86,30 @@ function YoutubeApp() {
 	return <App />;
 }
 
+function SlowApp() {
+	useEffect( () => {
+		fetchMock.restore();
+		fetchMock.mock(
+			'*',
+			{
+				html:'I\ll wait for you!',
+				js: '',
+				style: ''
+			},
+			{delay: 2500, sendAsJson: true}
+		);
+	}, [] );
+
+	
+	return <App />;
+}
+
 export default {
 	title: 'Shortcode Preview Block',
 };
 
-export const _default = () => {
-	return <OnlyARobotApp />;
-};
+export const _default = () => <OnlyARobotApp />;
 
-export const YouTubeVideoEmbed = () => {
-	return <YoutubeApp />;
-};
+export const YouTubeVideoEmbed = () => <YoutubeApp />;
+
+export const SlowRenderShortcode = () => <SlowApp />;
