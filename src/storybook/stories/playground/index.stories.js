@@ -30,13 +30,11 @@ global.wpApiSettings = {
 }
 import '../../../index';
 
-function OnlyARobotApp() {
+function App() {
 	const [ blocks, updateBlocks ] = useState( [] );
 
 	useEffect( () => {
 		registerCoreBlocks();
-		fetchMock.restore();
-		fetchMock.mock('*', {html:'I\'m only a robot dave', js: '', style: ''});
 	}, [] );
 
 	
@@ -69,43 +67,23 @@ function OnlyARobotApp() {
 	);
 }
 
-function YoutubeApp() {
-	const [ blocks, updateBlocks ] = useState( [] );
-
+function OnlyARobotApp() {
 	useEffect( () => {
-		registerCoreBlocks();
+		fetchMock.restore();
+		fetchMock.mock('*', {html:'I\'m only a robot dave', js: '', style: ''});
+	});
+
+	return <App/>;
+};
+
+function YoutubeApp() {
+	useEffect( () => {
 		fetchMock.restore();
 		fetchMock.mock('*', {html:'<iframe width="560" height="315" src="https://www.youtube.com/embed/oKsxPW6i3pM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>', js: '', style: ''});
 	}, [] );
 
 	
-	return (
-		<div className="playground">
-			<SlotFillProvider>
-				<DropZoneProvider>
-					<BlockEditorProvider
-						value={ blocks }
-						onInput={ updateBlocks }
-						onChange={ updateBlocks }
-					>
-						<div className="playground__sidebar">
-							<BlockInspector />
-						</div>
-						<div className="editor-styles-wrapper">
-							<Popover.Slot name="block-toolbar" />
-							<BlockEditorKeyboardShortcuts />
-							<WritingFlow>
-								<ObserveTyping>
-									<BlockList />
-								</ObserveTyping>
-							</WritingFlow>
-						</div>
-						<Popover.Slot />
-					</BlockEditorProvider>
-				</DropZoneProvider>
-			</SlotFillProvider>
-		</div>
-	);
+	return <App />;
 }
 
 export default {
