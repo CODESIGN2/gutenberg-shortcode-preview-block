@@ -7,6 +7,11 @@ var config = {
 	module: {
 		rules: [
 			{
+				test: /\/stories\/.+\.js$/,
+				loaders: [ require.resolve( '@storybook/source-loader' ) ],
+				enforce: 'pre',
+			},
+			{
 				test: /.js$/,
 				loader: 'babel-loader',
 				exclude: /node_modules/,

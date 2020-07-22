@@ -1,23 +1,4 @@
 {
-	"presets": [
-		[ "env", {
-			"modules": false,
-			"targets": {
-				"browsers": [
-					"last 20 Chrome versions",
-					"last 20 Firefox versions",
-					"last 4 Safari versions",
-					"last 5 iOS versions",
-					"last 5 Android version",
-					"last 10 ChromeAndroid version",
-					"ie 11"
-				]
-			}
-		} ]
-	],
-	"plugins": [
-		[ "transform-react-jsx", {
-			"pragma": "wp.element.createElement"
-		} ]
-	]
+	"presets": [ "@wordpress/babel-preset-default" ],
+	"plugins": [ "@babel/plugin-proposal-class-properties" ]
 }
