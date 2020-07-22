@@ -4,6 +4,7 @@ vendor
 bin
 tests/reports
 *.build.js
+*.build.*.json
 *.log
 *.vagrant
 *.zip

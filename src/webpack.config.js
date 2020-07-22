@@ -1,4 +1,6 @@
 
+const DependencyExtractionWebpackPlugin = require( '@wordpress/dependency-extraction-webpack-plugin' );
+
 var config = {
 	entry: './index.js',
 	output: {
@@ -23,11 +25,21 @@ var config = {
 			}
 		],
 	},
+	plugins: [],
 };
 
 module.exports = (env, argv) => {
 	if (argv.mode === 'development') {
 		config.devtool = 'source-map';
+	}
+
+	if(process.env.WP_NO_EXTERNALS) {
+		config.plugins.push(
+			new DependencyExtractionWebpackPlugin( {
+				injectPolyfill: true,
+				outputFormat: 'json'
+			})
+		);
 	}
 
 	return config;
