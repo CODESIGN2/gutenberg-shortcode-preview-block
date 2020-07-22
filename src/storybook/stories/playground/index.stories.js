@@ -1,4 +1,10 @@
 /**
+ * External Vendor Dependencies
+ */
+import fetchMock from 'fetch-mock';
+
+
+/**
  * WordPress dependencies
  */
 import { useEffect, useState } from '@wordpress/element';
@@ -9,15 +15,14 @@ import {
 	BlockInspector,
 	WritingFlow,
 	ObserveTyping,
+	BlockToolbar,
 } from '@wordpress/block-editor';
 import {
-	Popover,
 	SlotFillProvider,
 	DropZoneProvider,
+	
 } from '@wordpress/components';
 import { registerCoreBlocks } from '@wordpress/block-library';
-
-import fetchMock from 'fetch-mock';
 
 
 /**
@@ -37,12 +42,10 @@ const iframeAllow = (
 
 function App() {
 	const [ blocks, updateBlocks ] = useState( [] );
-
 	useEffect( () => {
 		registerCoreBlocks();
 	}, [] );
 
-	
 	return (
 		<div className="playground">
 			<SlotFillProvider>
@@ -51,12 +54,15 @@ function App() {
 						value={ blocks }
 						onInput={ updateBlocks }
 						onChange={ updateBlocks }
+						settings={{hasFixedToolbar: true}} 
 					>
+						<div style={{position: 'sticky', zIndex: 99 }}>
+							<BlockToolbar settings={{hasFixedToolbar: true}} />
+						</div>
 						<div className="playground__sidebar">
 							<BlockInspector />
 						</div>
 						<div className="editor-styles-wrapper">
-							<Popover.Slot name="block-toolbar" />
 							<BlockEditorKeyboardShortcuts />
 							<WritingFlow>
 								<ObserveTyping>
@@ -64,7 +70,6 @@ function App() {
 								</ObserveTyping>
 							</WritingFlow>
 						</div>
-						<Popover.Slot />
 					</BlockEditorProvider>
 				</DropZoneProvider>
 			</SlotFillProvider>
@@ -78,7 +83,7 @@ function OnlyARobotApp() {
 		fetchMock.mock('*', {html:'I\'m only a robot dave', js: '', style: ''});
 	});
 
-	return <App/>;
+	return <App />;
 };
 
 function YoutubeApp() {
