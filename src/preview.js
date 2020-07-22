@@ -45,7 +45,7 @@ class ShortcodePreview extends Component {
 		const response = this.state.response;
 		if ( response.isLoading || ! response.data ) {
 			return (
-				<div key="loading" className="wp-block-embed is-loading">
+				<div className="wp-block-embed is-loading">
 					<Spinner />
 					<p>{ __( 'Loading...' ) }</p>
 				</div>

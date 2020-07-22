@@ -6,6 +6,6 @@
 	left: 0;
 }
 
-.wp-block-custom-shortcode.components-placeholder textarea {
+.wp-block-custom-shortcode.components-placeholder .input-control {
 	width: 100%;
 }

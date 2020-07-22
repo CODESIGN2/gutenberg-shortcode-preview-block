@@ -29,7 +29,7 @@ export class Shortcode extends Component {
 		const willPreview = shortcodeContent.length && preview;
 
 		const controls = isSelected ? (
-			<BlockControls key="controls">
+			<BlockControls>
 				<div className="components-toolbar">
 					<button
 						className={ `components-button components-tab-button ${ ! willPreview ? 'is-pressed is-active' : '' }` }
@@ -50,7 +50,7 @@ export class Shortcode extends Component {
 		) : null;
 
 		return ( willPreview ? [
-				<div className="wp-block-custom-shortcode" key="preview">
+				<div className="wp-block-custom-shortcode">
 					{ controls }
 					<ShortcodePreview
 						shortcode={ shortcodeContent }
@@ -58,7 +58,7 @@ export class Shortcode extends Component {
 					/>
 				</div>,
 			] : [
-				<div className="wp-block-custom-shortcode components-placeholder" key="placeholder">
+				<div className="wp-block-custom-shortcode components-placeholder">
 					{ controls }
 					<label htmlFor={ inputId } className="components-placeholder__label">
 						<Dashicon icon="editor-code" />
