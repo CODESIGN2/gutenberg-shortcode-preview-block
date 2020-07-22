@@ -16,7 +16,7 @@ import {
 	DropZoneProvider,
 } from '@wordpress/components';
 import { registerCoreBlocks } from '@wordpress/block-library';
-import '../../../index';
+
 import fetchMock from 'fetch-mock';
 
 
@@ -24,17 +24,61 @@ import fetchMock from 'fetch-mock';
  * Internal dependencies
  */
 import './style.scss';
+global.wpApiSettings = {
+	nonce: 1337,
+	root: '/wp-api/v1'
+}
+import '../../../index';
 
-
-function App() {
+function OnlyARobotApp() {
 	const [ blocks, updateBlocks ] = useState( [] );
 
 	useEffect( () => {
-		fetchMock.mock('*', {html:'I\'m only a robot dave', js: '', style: ''});
-		global.wpApiSettings = {nonce: 123456, root: '/wp-api/v1'}
 		registerCoreBlocks();
+		fetchMock.restore();
+		fetchMock.mock('*', {html:'I\'m only a robot dave', js: '', style: ''});
 	}, [] );
 
+	
+	return (
+		<div className="playground">
+			<SlotFillProvider>
+				<DropZoneProvider>
+					<BlockEditorProvider
+						value={ blocks }
+						onInput={ updateBlocks }
+						onChange={ updateBlocks }
+					>
+						<div className="playground__sidebar">
+							<BlockInspector />
+						</div>
+						<div className="editor-styles-wrapper">
+							<Popover.Slot name="block-toolbar" />
+							<BlockEditorKeyboardShortcuts />
+							<WritingFlow>
+								<ObserveTyping>
+									<BlockList/>
+								</ObserveTyping>
+							</WritingFlow>
+						</div>
+						<Popover.Slot />
+					</BlockEditorProvider>
+				</DropZoneProvider>
+			</SlotFillProvider>
+		</div>
+	);
+}
+
+function YoutubeApp() {
+	const [ blocks, updateBlocks ] = useState( [] );
+
+	useEffect( () => {
+		registerCoreBlocks();
+		fetchMock.restore();
+		fetchMock.mock('*', {html:'<iframe width="560" height="315" src="https://www.youtube.com/embed/oKsxPW6i3pM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>', js: '', style: ''});
+	}, [] );
+
+	
 	return (
 		<div className="playground">
 			<SlotFillProvider>
@@ -69,5 +113,9 @@ export default {
 };
 
 export const _default = () => {
-	return <App />;
+	return <OnlyARobotApp />;
+};
+
+export const YouTubeVideoEmbed = () => {
+	return <YoutubeApp />;
 };
