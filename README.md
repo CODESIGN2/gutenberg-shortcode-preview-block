@@ -33,10 +33,33 @@ npm run build
 
 after cloning the repo and cd'ing into the directory (from using above)
 
+### PHP
+
 ```
 composer install
 mkdir -p tests/reports
 phpunit --verbose --coverage-html tests/reports
 ```
 
-JS tests experts welcome :wink:
+### JavaScript
+
+```
+cd src
+npm install
+```
+
+#### StorybookJS (manual QA)
+
+```
+npm run storybook
+```
+
+#### Jest
+
+Coming as soon as I find out why setting isSelected as a prop is ignored, not showing the UI.
+
+### Future
+
+I would very much like to break out the `onComponentDidMount` to be a named action, which is simple enough, but also might avoid mocking of fetch and pass-through of an alternative resolver.
+
+I'm also interested to find out how to using just JS enqueue blocks. This is building on the Gutenberg team work with StorybookJS integration and seems to differ from other ReactJS testing and JS testing I've done using jest.
