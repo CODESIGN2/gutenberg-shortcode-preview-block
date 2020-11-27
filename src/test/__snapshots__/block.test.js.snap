@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Shortcode when added Should match Snapshot 1`] = `
+<div
+  class="wp-block-custom-shortcode components-placeholder"
+>
+  <label
+    class="components-placeholder__label"
+    for="blocks-custom-shortcode-input-0"
+  >
+    <svg
+      aria-hidden="true"
+      class="dashicon dashicons-editor-code"
+      focusable="false"
+      height="20"
+      role="img"
+      viewBox="0 0 20 20"
+      width="20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M9 6l-4 4 4 4-1 2-6-6 6-6zm2 8l4-4-4-4 1-2 6 6-6 6z"
+      />
+    </svg>
+    Shortcode
+  </label>
+  <textarea
+    class="block-editor-plain-text input-control"
+    id="blocks-custom-shortcode-input-0"
+    placeholder="Write shortcode here…"
+    rows="1"
+  >
+    [code]hello world[/code]
+  </textarea>
+</div>
+`;
+
+exports[`Shortcode when added in preview mode before receiving a server response Should match Snapshot 1`] = `
+<div
+  class="wp-block-custom-shortcode"
+>
+  <div
+    class="wp-block-embed is-loading"
+  >
+    <span
+      class="components-spinner"
+    />
+    <p>
+      Loading...
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Shortcode when added in preview mode with a response Should match Snapshot 1`] = `
+<div
+  class="wp-block-custom-shortcode"
+>
+  <iframe
+    class="components-sandbox"
+    height="0"
+    sandbox="allow-scripts allow-same-origin allow-presentation"
+    title="Preview"
+    width="0"
+  />
+  <div
+    class="sandbox__preview-overlay"
+  />
+</div>
+`;
