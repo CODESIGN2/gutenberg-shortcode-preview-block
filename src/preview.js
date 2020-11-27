@@ -18,11 +18,14 @@ class ShortcodePreview extends Component {
 	componentDidMount() {
 		const { shortcode } = this.props;
 		const myURL = new URL( window.location.href );
-		const apiURL = addQueryArgs( wpApiSettings.root + 'gutenberg/v1/shortcodes', {
-			shortcode: shortcode,
-			_wpnonce: wpApiSettings.nonce,
-			postId: myURL.searchParams.get('post'),
-		} );
+		const apiURL = addQueryArgs(
+			wpApiSettings.root + 'gutenberg/v1/shortcodes',
+			{
+				shortcode,
+				_wpnonce: wpApiSettings.nonce,
+				postId: myURL.searchParams.get('post'),
+			}
+		);
 		return window.fetch( apiURL, {
 			credentials: 'include',
 		} ).then( response => {
@@ -41,7 +44,7 @@ class ShortcodePreview extends Component {
 	}
 
 	render() {
-		const {parentSelected} = this.props;
+		const {parentSelected, sharedInstanceId} = this.props;
 		const response = this.state.response;
 		if ( response.isLoading || ! response.data ) {
 			return (
@@ -62,16 +65,24 @@ class ShortcodePreview extends Component {
 					html={ html }
 					title="Preview"
 					type={ response.data.type }
+					key={`cd2-shortcode-block-preview-${ sharedInstanceId }`}
 				/>,
 		];
+
 		if ( !parentSelected ) {
 			/*	
 				An overlay is added when the block is not selected in order to register click events. 
 				Some browsers do not bubble up the clicks from the sandboxed iframe, which makes it 
 				difficult to reselect the block. 
 			*/
-			output.push(<div className="sandbox__preview-overlay"></div>);
+			output.push(
+				<div 
+					className="sandbox__preview-overlay" 
+					key={`cd2-shortcode-block-preview-interaction-blocker-${ sharedInstanceId }`}
+				></div>
+			);
 		}
+
 		return output
 	}
 }

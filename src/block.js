@@ -4,7 +4,7 @@
 import { Dashicon } from '@wordpress/components';
 import { withInstanceId } from '@wordpress/compose';
 import { withSelect } from '@wordpress/data';
-import { PlainText, BlockControls } from '@wordpress/editor';
+import { PlainText, BlockControls } from '@wordpress/block-editor';
 import { Component } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -49,15 +49,16 @@ export class Shortcode extends Component {
 			</BlockControls>
 		) : null;
 
-		return ( willPreview ? [
+		return ( willPreview ? (
 				<div className="wp-block-custom-shortcode">
 					{ controls }
 					<ShortcodePreview
 						shortcode={ shortcodeContent }
 						parentSelected={ isSelected }
+						sharedInstanceId={ instanceId }
 					/>
-				</div>,
-			] : [
+				</div>
+		 ) : (
 				<div className="wp-block-custom-shortcode components-placeholder">
 					{ controls }
 					<label htmlFor={ inputId } className="components-placeholder__label">
@@ -71,8 +72,8 @@ export class Shortcode extends Component {
 						placeholder={ __( 'Write shortcode here…' ) }
 						onChange={ ( text ) => setAttributes( { text } ) }
 					/>
-				</div>,
-			]
+				</div>
+		 	)
 		);
 	}
 }
