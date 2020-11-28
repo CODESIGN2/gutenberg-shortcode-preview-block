@@ -33,7 +33,7 @@ global.wpApiSettings = {
   nonce: 1337,
   root: '/wp-api/v1'
 }
-import '../../../index';
+import '../../../src/index';
 
 
 const iframeAllow = (
