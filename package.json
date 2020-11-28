@@ -50,6 +50,7 @@
     "babel-plugin-react-native-classname-to-style": "1.2.2",
     "babel-plugin-react-native-platform-specific-extensions": "1.1.1",
     "babel-plugin-require-context-hook": "1.0.0",
+    "coveralls": "^3.1.0",
     "cross-env": "^5.2.0",
     "css-loader": "3.5.2",
     "fetch-mock": "^7.7.0",
@@ -73,7 +74,8 @@
     "storybook": "start-storybook -c ./storybook -p 6006",
     "storybook:build": "build-storybook -c ./storybook",
     "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "ci:coveralls": "jest --coverage && coveralls < coverage/lcov.info"
   },
   "dependencies": {},
   "jest": {

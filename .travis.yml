@@ -21,11 +21,14 @@ before_script:
 script:
   - bin/phpunit --verbose
   - npm install
-  - npm test
+  - npm run test:coverage
   - npm run build
 
 after_script:
-  - travis_retry php bin/php-coveralls -v -x tests/reports/clover.xml -o tests/reports/coveralls.json
+  - ls -lha
+  - ls -lha coverage
+  - ls -lha tests/reports
+  - travis_retry php bin/php-coveralls -v -x tests/reports/clover.xml -x coverage/clover.xml -o tests/reports/coveralls.json
   - ./build.sh
 
 cache:
