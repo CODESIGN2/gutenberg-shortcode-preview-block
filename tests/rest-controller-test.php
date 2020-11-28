@@ -17,7 +17,7 @@ class RestController extends \BaseWPMockTestCase
     \Mockery::Mock( '\WP_REST_Controller' );
     \Mockery::Mock( '\WP_Error' );
     \Mockery::Mock( '\WP_Request' );
-    $this->controller = new rest\WP_REST_Shortcodes_Controller();
+    $this->controller = new rest\WPREST_Shortcodes_Controller();
   }
 
   public function test_we_get_WP_Error_if_user_cannot_edit_post()
