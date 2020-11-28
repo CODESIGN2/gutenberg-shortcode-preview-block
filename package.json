@@ -2,7 +2,7 @@
   "name": "cd2-gutenberg-shortcode",
   "version": "1.1.1",
   "license": "GPL-2.0-or-later",
-  "main": "index.js",
+  "main": "src/index.js",
   "devDependencies": {
     "@babel/core": "7.9.0",
     "@babel/plugin-syntax-jsx": "7.8.3",
@@ -70,8 +70,8 @@
   "scripts": {
     "build": "cross-env WP_NO_EXTERNALS=true BABEL_ENV=default NODE_ENV=production webpack --mode=production",
     "dev": "cross-env BABEL_ENV=default NODE_ENV=development webpack --mode=development --watch",
-    "storybook": "start-storybook -c ./storybook -p 6006",
-    "storybook:build": "build-storybook -c ./storybook",
+    "storybook": "start-storybook -c ./src/storybook -p 6006",
+    "storybook:build": "build-storybook -c ./src/storybook",
     "test": "jest",
     "test:coverage": "jest --coverage"
   },
