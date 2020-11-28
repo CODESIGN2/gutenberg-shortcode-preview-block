@@ -72,10 +72,19 @@
     "dev": "cross-env BABEL_ENV=default NODE_ENV=development webpack --mode=development --watch",
     "storybook": "start-storybook -c ./storybook -p 6006",
     "build-storybook": "build-storybook",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {},
   "jest": {
-    "preset": "@wordpress/jest-preset-default"
+    "preset": "@wordpress/jest-preset-default",
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 50,
+        "lines": 50,
+        "statements": 50
+      }
+    }
   }
 }

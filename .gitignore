@@ -3,6 +3,7 @@ src/node_modules
 vendor
 bin
 tests/reports
+coverage/
 *.build.js
 *.build.*.json
 *.log

@@ -56,7 +56,19 @@ npm run storybook
 
 #### Jest
 
-Coming as soon as I find out why setting isSelected as a prop is ignored, not showing the UI.
+Care should be taken when testing to take note of higher order components. Really this means the project likely needs re-factoring to a functional modular approach. For now this "breaks" encapsulation, but works.
+
+```
+npm run jest
+```
+
+Coverage can be found using the following command.
+
+```
+npm run jest:coverage
+```
+
+The only missing coverage is an error state from the HTTP call and on{X} event listeners. Rather than test DOM event listeners, existing tests go straight to the effects caused by those listeners.
 
 ### Future
 
