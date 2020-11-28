@@ -16,11 +16,12 @@ matrix:
 
 before_script:
   - composer install --dev --optimize-autoloader
+  - npm install
   - mkdir -p tests/reports
 
 script:
   - bin/phpunit --verbose
-  - npm install
+  - composer run-script phpcs
   - npm run lint:style
   - npm run lint:js
   - npm run test:coverage
