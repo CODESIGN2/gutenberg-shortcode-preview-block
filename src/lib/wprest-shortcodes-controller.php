@@ -1,57 +1,63 @@
 <?php
 
 namespace cd2\wordpress\gutenberg\visualshortcode\rest;
+
 /**
- * Shortcode Blocks REST API: WP_REST_Shortcodes_Controller class
+ * Shortcode Blocks REST API: WPREST_Shortcodes_Controller class
  *
  * @package gutenberg
- * @since 2.0.0
+ * @since   1.0.0
  */
 
 /**
  * Controller which provides a REST endpoint for Gutenberg to preview shortcode blocks.
  *
- * @since 2.0.0
+ * @since 1.0.0
  *
  * @see WP_REST_Controller
  */
-class WP_REST_Shortcodes_Controller extends \WP_REST_Controller {
+class WPREST_Shortcodes_Controller extends \WP_REST_Controller {
+
 	/**
 	 * Constructs the controller.
 	 *
-	 * @since 2.0.0
+	 * @since  1.0.0
 	 * @access public
 	 */
 	public function __construct() {
-		// @codingStandardsIgnoreLine - PHPCS mistakes $this->namespace for the namespace keyword
-		$this->namespace = 'gutenberg/v1';
+        // @codingStandardsIgnoreLine - PHPCS mistakes $this->namespace for the namespace keyword
+        $this->namespace = 'gutenberg/v1';
 		$this->rest_base = 'shortcodes';
 	}
 
 	/**
 	 * Registers the necessary REST API routes.
 	 *
-	 * @since 0.10.0
+	 * @since  1.0.0
 	 * @access public
 	 */
 	public function register_routes() {
-		// @codingStandardsIgnoreLine - PHPCS mistakes $this->namespace for the namespace keyword
-		$namespace = $this->namespace;
+        // @codingStandardsIgnoreLine - PHPCS mistakes $this->namespace for the namespace keyword
+        $namespace = $this->namespace;
 
-		\register_rest_route( $namespace, '/' . $this->rest_base, array(
-			array(
-				'methods'             => \WP_REST_Server::READABLE,
-				'callback'            => array( $this, 'get_shortcode_output' ),
-				'permission_callback' => array( $this, 'get_shortcode_output_permissions_check' ),
-			),
-			'schema' => array( $this, 'get_public_item_schema' ),
-		) );
+		\register_rest_route(
+			$namespace,
+			'/' . $this->rest_base,
+			[
+				[
+					'methods'             => \WP_REST_Server::READABLE,
+					'callback'            => [ $this, 'get_shortcode_output' ],
+					'permission_callback' => [ $this, 'get_shortcode_output_permissions_check' ],
+				],
+				'schema' => [ $this, 'get_public_item_schema' ],
+			]
+		);
 	}
 
 	/**
 	 * Checks if a given request has access to read shortcode blocks.
 	 *
-	 * @since 2.0.0
+	 * @since  1.0.0
 	 * @access public
 	 *
 	 * @param  \WP_REST_Request $request Full details about the request.
@@ -77,10 +83,10 @@ class WP_REST_Shortcodes_Controller extends \WP_REST_Controller {
 	/**
 	 * Filters shortcode content through their hooks.
 	 *
-	 * @since 2.0.0
+	 * @since  1.0.0
 	 * @access public
 	 *
-	 * @param \WP_REST_Request $request Full details about the request.
+	 * @param  \WP_REST_Request $request Full details about the request.
 	 * @return \WP_REST_Response|\WP_Error Response object on success, or WP_Error object on failure.
 	 */
 	public function get_shortcode_output( $request ) {
@@ -92,29 +98,30 @@ class WP_REST_Shortcodes_Controller extends \WP_REST_Controller {
 		$type      = 'html';
 		$output    = '';
 		$args      = $request->get_params();
-		$post      = isset( $args['postId'] ) ? \get_post( $args['postId'] ) : null;
+		$post_id   = isset( $args['postId'] ) ? \get_post( $args['postId'] ) : null;
 		$shortcode = isset( $args['shortcode'] ) ? trim( $args['shortcode'] ) : '';
 
 		// Initialize $data.
-		$data = array(
+		$data = [
 			'html'  => $output,
 			'type'  => $type,
 			'style' => $style,
 			'js'    => $js,
-		);
+		];
 
 		if ( empty( $shortcode ) ) {
 			$data['html'] = __( 'Enter something to preview', 'gutenberg' );
 			return \rest_ensure_response( $data );
 		}
 
-		if ( ! empty( $post ) ) {
-			\setup_postdata( $post );
+		if ( ! empty( $post_id ) ) {
+			\setup_postdata( $post_id );
 		}
 
 		if ( \has_shortcode( $shortcode, 'embed' ) ) {
 			$output = $wp_embed->run_shortcode( $shortcode );
-		} else {
+		}
+		else {
 			$output = $shortcode;
 		}
 
@@ -133,12 +140,12 @@ class WP_REST_Shortcodes_Controller extends \WP_REST_Controller {
 		\wp_footer();
 		$js = ob_get_clean();
 
-		$data = array(
+		$data = [
 			'html'  => $output,
 			'type'  => $type,
 			'style' => $style,
 			'js'    => $js,
-		);
+		];
 
 		return \rest_ensure_response( $data );
 	}
@@ -146,51 +153,51 @@ class WP_REST_Shortcodes_Controller extends \WP_REST_Controller {
 	/**
 	 * Retrieves a shortcode block's schema, conforming to JSON Schema.
 	 *
-	 * @since 0.10.0
-	 * @access public
+	 * @since              1.0.0
+	 * @access             public
 	 * @codeCoverageIgnore
 	 *
 	 * @return array Item schema data.
 	 */
 	public function get_item_schema() {
-		return array(
+		return [
 			'$schema'    => 'http://json-schema.org/schema#',
 			'title'      => 'shortcode-block',
 			'type'       => 'object',
-			'properties' => array(
-				'html'  => array(
+			'properties' => [
+				'html'  => [
 					'description' => __(
 						'The block\'s content with shortcodes filtered through hooks.',
 						'gutenberg'
 					),
 					'type'        => 'string',
 					'required'    => true,
-				),
-				'type'  => array(
+				],
+				'type'  => [
 					'description' => __(
 						'The filtered content type - video or otherwise',
 						'gutenberg'
 					),
 					'type'        => 'string',
 					'required'    => true,
-				),
-				'style' => array(
+				],
+				'style' => [
 					'description' => __(
 						'Links to external style sheets needed to render the shortcode',
 						'gutenberg'
 					),
 					'type'        => 'string',
 					'required'    => true,
-				),
-				'js'    => array(
+				],
+				'js'    => [
 					'description' => __(
 						'Links to JS and CSS needed to render the shortcode',
 						'gutenberg'
 					),
 					'type'        => 'string',
 					'required'    => true,
-				),
-			),
-		);
+				],
+			],
+		];
 	}
 }
