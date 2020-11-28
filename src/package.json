@@ -71,7 +71,7 @@
     "build": "cross-env WP_NO_EXTERNALS=true BABEL_ENV=default NODE_ENV=production webpack --mode=production",
     "dev": "cross-env BABEL_ENV=default NODE_ENV=development webpack --mode=development --watch",
     "storybook": "start-storybook -c ./storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "storybook:build": "build-storybook -c ./storybook",
     "test": "jest",
     "test:coverage": "jest --coverage"
   },

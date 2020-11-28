@@ -11,3 +11,4 @@ coverage/
 *.zip
 Vagrantfile
 *.js.map
+storybook-static/
