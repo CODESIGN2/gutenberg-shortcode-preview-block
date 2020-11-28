@@ -21,6 +21,8 @@ before_script:
 script:
   - bin/phpunit --verbose
   - npm install
+  - npm run lint:style
+  - npm run lint:js
   - npm run test:coverage
   - npm run build
 
