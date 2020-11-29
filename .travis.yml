@@ -19,7 +19,7 @@ before_install:
 
 before_script:
   - composer install --dev --optimize-autoloader
-  - npm install
+  - npm ci
   - mkdir -p tests/reports
 
 script:
@@ -40,4 +40,4 @@ after_script:
 cache:
   directories:
     - vendor
-    - src/node_modules
+    - node_modules
