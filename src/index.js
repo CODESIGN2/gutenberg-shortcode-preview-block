@@ -13,7 +13,7 @@ import Shortcode from './block';
 export const name = 'custom/shortcode';
 
 export const settings = {
-	title: __( 'CD2 Shortcode' ),
+	title: __('CD2 Shortcode'),
 
 	description: __(
 		'A shortcode is a WordPress-specific code snippet that is written between square brackets as [shortcode]. '
@@ -45,7 +45,7 @@ export const settings = {
 				attributes: {
 					text: {
 						type: 'string',
-						shortcode: ( attrs, { content } ) => {
+						shortcode: (attrs, { content }) => {
 							return content;
 						},
 					},
@@ -62,8 +62,8 @@ export const settings = {
 
 	edit: Shortcode,
 
-	save( { attributes } ) {
-		return <RawHTML>{ attributes.text }</RawHTML>;
+	save({ attributes }) {
+		return <RawHTML>{attributes.text}</RawHTML>;
 	},
 };
-registerBlockType( name, settings );
+registerBlockType(name, settings);
