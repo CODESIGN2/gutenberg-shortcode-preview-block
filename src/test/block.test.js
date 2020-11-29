@@ -9,63 +9,63 @@ global.wpApiSettings = {
 	root: 'http://www.example.com/api/',
 };
 
-describe( 'Shortcode', () => {
+describe('Shortcode', () => {
 	let wrapper, wrapperElement;
 
-	beforeEach( () => {
+	beforeEach(() => {
 		const block = (
-			<MyBlock attributes={ { text: '[code]hello world[/code]' } } />
+			<MyBlock attributes={{ text: '[code]hello world[/code]' }} />
 		);
-		wrapper = TestUtils.renderIntoDocument( block );
+		wrapper = TestUtils.renderIntoDocument(block);
 		// eslint-disable-next-line react/no-find-dom-node
-		wrapperElement = () => ReactDOM.findDOMNode( wrapper );
+		wrapperElement = () => ReactDOM.findDOMNode(wrapper);
 
 		fetchMock.restore();
-		fetchMock.mock( '*', {
+		fetchMock.mock('*', {
 			html: '<pre>hello world</pre>',
 			js: '',
 			style: '',
-		} );
-	} );
+		});
+	});
 
-	describe( 'when added', () => {
-		it( 'Should match Snapshot', () => {
-			expect( wrapperElement() ).toMatchSnapshot();
-		} );
-	} );
+	describe('when added', () => {
+		it('Should match Snapshot', () => {
+			expect(wrapperElement()).toMatchSnapshot();
+		});
+	});
 
-	describe( 'when added in preview mode before receiving a server response', () => {
-		it( 'Should match Snapshot', () => {
+	describe('when added in preview mode before receiving a server response', () => {
+		it('Should match Snapshot', () => {
 			const block = TestUtils.findRenderedComponentWithType(
 				wrapper,
 				Shortcode
 			);
-			block.setState( {
+			block.setState({
 				preview: true,
-			} );
-			expect( wrapperElement() ).toMatchSnapshot();
-		} );
-	} );
+			});
+			expect(wrapperElement()).toMatchSnapshot();
+		});
+	});
 
-	describe( 'when added in preview mode with a response', () => {
-		it( 'Should match Snapshot', () => {
+	describe('when added in preview mode with a response', () => {
+		it('Should match Snapshot', () => {
 			const block = TestUtils.findRenderedComponentWithType(
 				wrapper,
 				Shortcode
 			);
-			block.setState( {
+			block.setState({
 				preview: true,
-			} );
+			});
 			const previewComponent = TestUtils.findRenderedComponentWithType(
 				wrapper,
 				ShortcodePreview
 			);
-			previewComponent.setState( {
+			previewComponent.setState({
 				response: {
 					data: { html: '<pre>hello world</pre>', js: '', style: '' },
 				},
-			} );
-			expect( wrapperElement() ).toMatchSnapshot();
-		} );
-	} );
-} );
+			});
+			expect(wrapperElement()).toMatchSnapshot();
+		});
+	});
+});

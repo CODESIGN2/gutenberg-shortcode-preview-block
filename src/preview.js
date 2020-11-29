@@ -7,8 +7,8 @@ import { Component } from '@wordpress/element';
 import { addQueryArgs } from '@wordpress/url';
 
 class ShortcodePreview extends Component {
-	constructor( props ) {
-		super( props );
+	constructor(props) {
+		super(props);
 		this.state = {
 			shortcode: '',
 			response: {},
@@ -17,7 +17,7 @@ class ShortcodePreview extends Component {
 
 	componentDidMount() {
 		const { shortcode } = this.props;
-		const myURL = new URL( window.location.href );
+		const myURL = new URL(window.location.href);
 		const apiURL = addQueryArgs(
 			// eslint-disable-next-line no-undef
 			wpApiSettings.root + 'gutenberg/v1/shortcodes',
@@ -25,26 +25,26 @@ class ShortcodePreview extends Component {
 				shortcode,
 				// eslint-disable-next-line no-undef
 				_wpnonce: wpApiSettings.nonce,
-				postId: myURL.searchParams.get( 'post' ),
+				postId: myURL.searchParams.get('post'),
 			}
 		);
 		return window
-			.fetch( apiURL, {
+			.fetch(apiURL, {
 				credentials: 'include',
-			} )
-			.then( ( response ) => {
+			})
+			.then((response) => {
 				response
 					.json()
-					.then( ( data ) => ( {
+					.then((data) => ({
 						data,
 						status: response.status,
-					} ) )
-					.then( ( res ) => {
-						if ( res.status === 200 ) {
-							this.setState( { response: res } );
+					}))
+					.then((res) => {
+						if (res.status === 200) {
+							this.setState({ response: res });
 						}
-					} )
-					.catch( () => {
+					})
+					.catch(() => {
 						const res = {
 							data: {
 								html: 'A Server Error Occurred',
@@ -52,19 +52,19 @@ class ShortcodePreview extends Component {
 								style: '',
 							},
 						};
-						this.setState( { response: res } );
-					} );
-			} );
+						this.setState({ response: res });
+					});
+			});
 	}
 
 	render() {
 		const { parentSelected, sharedInstanceId } = this.props;
 		const response = this.state.response;
-		if ( response.isLoading || ! response.data ) {
+		if (response.isLoading || !response.data) {
 			return (
 				<div className="wp-block-embed is-loading">
 					<Spinner />
-					<p>{ __( 'Loading…' ) }</p>
+					<p>{__('Loading…')}</p>
 				</div>
 			);
 		}
@@ -82,14 +82,14 @@ class ShortcodePreview extends Component {
 			'<div>&nbsp;</div>';
 		const output = [
 			<SandBox
-				html={ html }
+				html={html}
 				title="Preview"
-				type={ response.data.type }
-				key={ `cd2-shortcode-block-preview-${ sharedInstanceId }` }
+				type={response.data.type}
+				key={`cd2-shortcode-block-preview-${sharedInstanceId}`}
 			/>,
 		];
 
-		if ( ! parentSelected ) {
+		if (!parentSelected) {
 			/*	
         An overlay is added when the block is not selected in order to register click events. 
         Some browsers do not bubble up the clicks from the sandboxed iframe, which makes it 
@@ -98,7 +98,7 @@ class ShortcodePreview extends Component {
 			output.push(
 				<div
 					className="sandbox-preview-overlay"
-					key={ `cd2-shortcode-block-preview-interaction-blocker-${ sharedInstanceId }` }
+					key={`cd2-shortcode-block-preview-interaction-blocker-${sharedInstanceId}`}
 				></div>
 			);
 		}

@@ -15,7 +15,7 @@ import ShortcodePreview from './preview';
 
 export class Shortcode extends Component {
 	constructor() {
-		super( ...arguments );
+		super(...arguments);
 		this.state = {
 			preview: false,
 		};
@@ -29,35 +29,35 @@ export class Shortcode extends Component {
 			attributes,
 			isSelected,
 		} = this.props;
-		const inputId = `blocks-custom-shortcode-input-${ instanceId }`;
-		const shortcodeContent = ( attributes.text || '' ).trim();
+		const inputId = `blocks-custom-shortcode-input-${instanceId}`;
+		const shortcodeContent = (attributes.text || '').trim();
 		const willPreview = shortcodeContent.length && preview;
 
 		const controls = isSelected ? (
 			<BlockControls>
 				<div className="components-toolbar">
 					<button
-						className={ `components-button components-tab-button ${
-							! willPreview ? 'is-pressed is-active' : ''
-						}` }
-						onClick={ () => this.setState( { preview: false } ) }
-						aria-label={ __( 'Editing Shortcode' ) }
-						aria-pressed={ ! willPreview }
+						className={`components-button components-tab-button ${
+							!willPreview ? 'is-pressed is-active' : ''
+						}`}
+						onClick={() => this.setState({ preview: false })}
+						aria-label={__('Editing Shortcode')}
+						aria-pressed={!willPreview}
 					>
-						<span>{ __( 'Shortcode' ) }</span>
+						<span>{__('Shortcode')}</span>
 					</button>
 					<button
-						className={ `components-button components-tab-button ${
+						className={`components-button components-tab-button ${
 							willPreview ? 'is-pressed is-active' : ''
-						}` }
-						onClick={ () =>
+						}`}
+						onClick={() =>
 							shortcodeContent.length &&
-							this.setState( { preview: true } )
+							this.setState({ preview: true })
 						}
-						aria-label={ __( 'Previewing Shortcode' ) }
-						aria-pressed={ willPreview }
+						aria-label={__('Previewing Shortcode')}
+						aria-pressed={willPreview}
 					>
-						<span>{ __( 'Preview' ) }</span>
+						<span>{__('Preview')}</span>
 					</button>
 				</div>
 			</BlockControls>
@@ -65,38 +65,38 @@ export class Shortcode extends Component {
 
 		return willPreview ? (
 			<div className="wp-block-custom-shortcode">
-				{ controls }
+				{controls}
 				<ShortcodePreview
-					shortcode={ shortcodeContent }
-					parentSelected={ isSelected }
-					sharedInstanceId={ instanceId }
+					shortcode={shortcodeContent}
+					parentSelected={isSelected}
+					sharedInstanceId={instanceId}
 				/>
 			</div>
 		) : (
 			<div className="wp-block-custom-shortcode components-placeholder">
-				{ controls }
+				{controls}
 				<label
-					htmlFor={ inputId }
+					htmlFor={inputId}
 					className="components-placeholder__label"
 				>
 					<Dashicon icon="editor-code" />
-					{ __( 'Shortcode' ) }
+					{__('Shortcode')}
 				</label>
 				<PlainText
-					id={ inputId }
-					value={ attributes.text }
+					id={inputId}
+					value={attributes.text}
 					className="input-control"
-					placeholder={ __( 'Write shortcode here…' ) }
-					onChange={ ( text ) => setAttributes( { text } ) }
+					placeholder={__('Write shortcode here…')}
+					onChange={(text) => setAttributes({ text })}
 				/>
 			</div>
 		);
 	}
 }
 
-export default withSelect( ( select ) => {
-	const { getSettings } = select( 'core/block-editor' );
+export default withSelect((select) => {
+	const { getSettings } = select('core/block-editor');
 	return {
 		styles: getSettings().styles,
 	};
-} )( withInstanceId( Shortcode ) );
+})(withInstanceId(Shortcode));
