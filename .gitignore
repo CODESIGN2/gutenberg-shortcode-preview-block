@@ -12,3 +12,4 @@ coverage/
 Vagrantfile
 *.js.map
 storybook-static/
+test-reports/
