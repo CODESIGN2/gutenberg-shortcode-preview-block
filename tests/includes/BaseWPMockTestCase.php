@@ -1,8 +1,9 @@
 <?php
 
-class BaseWPMockTestCase extends \PHPUnit\Framework\TestCase
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+class BaseWPMockTestCase extends TestCase
 {
-    function setUp()
+    protected function set_up()
     {
         \WP_Mock::setUsePatchwork( true );
         \WP_Mock::setUp();
@@ -16,7 +17,7 @@ class BaseWPMockTestCase extends \PHPUnit\Framework\TestCase
         $this->enqueue_script = \WP_Mock::wpFunction( 'wp_enqueue_script' );
     }
 
-    function tearDown()
+    function tear_down()
     {
         $this->addToAssertionCount(
             \Mockery::getContainer()->mockery_getExpectationCount()

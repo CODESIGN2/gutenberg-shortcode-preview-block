@@ -11,9 +11,9 @@ require_once __DIR__ . '/includes/wp-embed.php';
 class RestController extends \BaseWPMockTestCase
 {
 
-  function setUp()
+  function set_up()
   {
-    parent::setUp();
+    parent::set_up();
     \Mockery::Mock( '\WP_REST_Controller' );
     \Mockery::Mock( '\WP_Error' );
     \Mockery::Mock( '\WP_Request' );
