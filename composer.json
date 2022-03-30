@@ -21,9 +21,6 @@
         "psr-4": { "cd2\\wordpress\\gutenberg\\visualshortcode\\": "tests" }
     },
     "minimum-stability": "stable",
-    "config": {
-        "bin-dir": "bin/"
-    },
     "scripts": {
 		"phpcs": [
 			"phpcs --extensions=php -s -p src"
